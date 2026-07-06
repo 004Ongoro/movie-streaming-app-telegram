@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!isConfigured) {
       return MaterialApp(
-        title: 'UG MOVIE',
+        title: 'UG Movies',
         theme: AppTheme.darkTheme,
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,

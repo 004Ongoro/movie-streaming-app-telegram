@@ -25,7 +25,7 @@ class MovieListScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('UG MOVIE'),
+        title: const Text('UG Movies'),
         actions: [
           IconButton(
             icon: const Icon(Icons.sync_rounded),

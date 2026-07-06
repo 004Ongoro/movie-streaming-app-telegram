@@ -1,11 +1,11 @@
 {
-    "name": "ug_movie",
-    "short_name": "ug_movie",
+    "name": "UG Movies",
+    "short_name": "UG Movies",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#090A0F",
+    "theme_color": "#E50914",
+    "description": "Stream movies from Telegram",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

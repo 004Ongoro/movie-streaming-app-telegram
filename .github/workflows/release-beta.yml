@@ -25,7 +25,9 @@ jobs:
           channel: stable
 
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          flutter pub add google_fonts:^8.1.0
+          flutter pub get
 
       - name: Build APK
         run: >

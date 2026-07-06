@@ -75,7 +75,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'UG MOVIE',
+                    'UG Movies',
                     style: Theme.of(context).textTheme.displayLarge?.copyWith(
                           color: const Color(0xFFE50914),
                           letterSpacing: 4,

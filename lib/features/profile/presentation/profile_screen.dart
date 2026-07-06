@@ -31,7 +31,7 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              user?.email ?? 'UG MOVIE',
+              user?.email ?? 'UG Movies',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
