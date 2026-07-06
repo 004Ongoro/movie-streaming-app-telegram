@@ -14,14 +14,14 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-API_ID = os.getenv("TELEGRAM_API_ID")
-API_HASH = os.getenv("TELEGRAM_API_HASH")
+API_ID = os.getenv("TELEGRAM_APP_API_ID")
+API_HASH = os.getenv("TELEGRAM_APP_API_HASH")
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHANNEL_ID = os.getenv("TELEGRAM_CHANNEL_ID")
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_URL = os.getenv("PROJECT_URL")
+SUPABASE_KEY = os.getenv("SERVICE_ROLE_KEY")
 
-missing = [k for k, v in [("TELEGRAM_API_ID", API_ID), ("TELEGRAM_API_HASH", API_HASH), ("TELEGRAM_BOT_TOKEN", BOT_TOKEN), ("TELEGRAM_CHANNEL_ID", CHANNEL_ID), ("SUPABASE_URL", SUPABASE_URL), ("SUPABASE_KEY", SUPABASE_KEY)] if not v]
+missing = [k for k, v in [("TELEGRAM_APP_API_ID", API_ID), ("TELEGRAM_APP_API_HASH", API_HASH), ("TELEGRAM_BOT_TOKEN", BOT_TOKEN), ("TELEGRAM_CHANNEL_ID", CHANNEL_ID), ("PROJECT_URL", SUPABASE_URL), ("SERVICE_ROLE_KEY", SUPABASE_KEY)] if not v]
 if missing:
     logger.warning(f"Missing env vars: {', '.join(missing)}")
 
