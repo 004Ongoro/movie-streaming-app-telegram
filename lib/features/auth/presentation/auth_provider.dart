@@ -53,10 +53,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<String?> signUp(String email, String password) async {
     state = const AuthState(status: AuthStatus.loading);
     try {
-      await Supabase.instance.client.auth.signUp(
+      final response = await Supabase.instance.client.auth.signUp(
         email: email,
         password: password,
       );
+      final user = response.user;
+      if (user != null && user.emailConfirmedAt != null) {
+        state = AuthState(status: AuthStatus.authenticated, user: user);
+      } else {
+        state = const AuthState(status: AuthStatus.unauthenticated);
+      }
       return null;
     } on AuthException catch (e) {
       state = AuthState(status: AuthStatus.unauthenticated, error: e.message);
