@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../auth/presentation/auth_provider.dart';
 import '../../movies/domain/movie_model.dart';
 import '../../movies/presentation/movie_widgets.dart';
 import 'favorites_provider.dart';
@@ -18,7 +20,32 @@ class FavoritesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authProvider);
     final favoritesAsync = ref.watch(favoriteMoviesProvider);
+
+    if (authState.status != AuthStatus.authenticated) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('My Favorites')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.lock_outline_rounded, size: 80, color: Colors.grey),
+              const SizedBox(height: 16),
+              const Text(
+                'Sign in to see your favorites',
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => context.go('/auth'),
+                child: const Text('Sign In'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/auth/presentation/auth_screen.dart';
 import '../../features/movies/domain/movie_model.dart';
 import '../../features/movies/presentation/movie_list_screen.dart';
 import '../../features/movies/presentation/movie_player_screen.dart';
@@ -14,6 +14,10 @@ final routerProvider = GoRouter(
     GoRoute(
       path: '/splash',
       builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/auth',
+      builder: (context, state) => const AuthScreen(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) => MainShell(navigationShell: navigationShell),

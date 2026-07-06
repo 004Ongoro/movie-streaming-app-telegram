@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../auth/presentation/auth_provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authProvider);
+    final user = authState.user;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -18,15 +24,15 @@ class ProfileScreen extends StatelessWidget {
               radius: 50,
               backgroundColor: const Color(0xFFE50914).withOpacity(0.2),
               child: const Icon(
-                Icons.movie_filter_rounded,
+                Icons.person_rounded,
                 size: 50,
                 color: Color(0xFFE50914),
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
-              'UG MOVIE',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              user?.email ?? 'UG MOVIE',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             const Text(
@@ -48,6 +54,28 @@ class ProfileScreen extends StatelessWidget {
               subtitle: 'Telegram + Supabase',
             ),
             const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () async {
+                  await ref.read(authProvider.notifier).signOut();
+                  if (context.mounted) {
+                    context.go('/auth');
+                  }
+                },
+                icon: const Icon(Icons.logout_rounded),
+                label: const Text('Sign Out'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: const Color(0xFFE50914),
+                  side: const BorderSide(color: Color(0xFFE50914)),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

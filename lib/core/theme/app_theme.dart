@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Cinematic Dark Color Palette
+  // Colors
   static const Color background = Color(0xFF090A0F);
   static const Color surface = Color(0xFF121420);
   static const Color surfaceCard = Color(0xFF1B1E30);
-  static const Color primary = Color(0xFFE50914); // Cinematic red
+  static const Color primary = Color(0xFFE50914); // Red
   static const Color primaryAccent = Color(0xFFFF2E3B);
   static const Color textPrimary = Color(0xFFF5F5F7);
   static const Color textSecondary = Color(0xFF8E8E93);

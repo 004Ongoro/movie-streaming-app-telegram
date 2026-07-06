@@ -32,7 +32,7 @@ class _MoviePlayerScreenState extends State<MoviePlayerScreen> {
   Future<void> _initializePlayer() async {
     final streamUrl = '${SupabaseConfig.backendUrl}/stream/${widget.movie.id}';
     
-    // Set preferred orientations for full-screen video
+    // Allow landscape
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
@@ -106,7 +106,7 @@ class _MoviePlayerScreenState extends State<MoviePlayerScreen> {
     _videoPlayerController.dispose();
     _chewieController?.dispose();
     
-    // Reset orientations when leaving the player
+    // Reset orientation
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -120,7 +120,6 @@ class _MoviePlayerScreenState extends State<MoviePlayerScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            // Video Area
             Center(
               child: _hasError
                   ? Column(
@@ -164,7 +163,7 @@ class _MoviePlayerScreenState extends State<MoviePlayerScreen> {
                         ),
             ),
             
-            // Back Button Overlay (visible when not fullscreen or using custom controls overlay)
+            // Back button
             Positioned(
               top: 16,
               left: 16,

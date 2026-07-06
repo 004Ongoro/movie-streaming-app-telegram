@@ -2,24 +2,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/movie_repository.dart';
 import '../domain/movie_model.dart';
 
-// Provider for the Movie Repository
+// Movie repo
 final movieRepositoryProvider = Provider<MovieRepository>((ref) {
   return MovieRepository();
 });
 
-// StateProvider for searching
+// Search
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
-// StateProvider for category selection
+// Category
 final selectedCategoryProvider = StateProvider<String>((ref) => 'All');
 
-// Provider for all categories
+// Categories
 final categoriesProvider = FutureProvider<List<String>>((ref) async {
   final repo = ref.watch(movieRepositoryProvider);
   return repo.getCategories();
 });
 
-// Provider for the filtered movie list
+// Movies
 final moviesListProvider = FutureProvider<List<MovieModel>>((ref) async {
   final repo = ref.watch(movieRepositoryProvider);
   final category = ref.watch(selectedCategoryProvider);

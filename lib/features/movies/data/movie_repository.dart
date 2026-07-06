@@ -72,7 +72,7 @@ class MovieRepository {
     }
   }
 
-  // Force indexing by invoking the backend /index endpoint
+  // Index
   Future<int> triggerIndexing() async {
     try {
       final response = await http.post(

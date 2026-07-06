@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/network/supabase_config.dart';
+import '../../auth/presentation/auth_provider.dart';
 import '../../favorites/presentation/favorites_provider.dart';
 import '../domain/movie_model.dart';
 
@@ -155,6 +156,19 @@ class MovieDetailBottomSheet extends ConsumerWidget {
                     size: 28,
                   ),
                   onPressed: () async {
+                    final authState = ref.read(authProvider);
+                    if (authState.status != AuthStatus.authenticated) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Sign in to add favorites'),
+                            backgroundColor: Colors.redAccent,
+                          ),
+                        );
+                        context.go('/auth');
+                      }
+                      return;
+                    }
                     try {
                       if (isFav) {
                         await ref.read(favoriteRepositoryProvider).removeFavorite(movie.id);
